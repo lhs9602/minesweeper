@@ -34,7 +34,6 @@ export const initializeBoard = (
         isMine,
         isOpen: false,
         isFlagged: false,
-        isQuestioned: false,
         neighboringMines,
       };
     }

@@ -5,7 +5,7 @@ export const HeaderContainer = styled.div`
   ${BlockContainerColor}
   padding: 0.2rem;
   display: flex;
-  width: 400px;
+  gap: 2px;
 `;
 export const MinesCountWrapper = styled.div`
   display: flex;

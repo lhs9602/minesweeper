@@ -3,8 +3,8 @@ import { SettingProps } from "../data/type/type";
 export const isValidSetting = (option: SettingProps): boolean => {
   const { height, width, mines } = option;
 
-  if (height < 1 || height > 100 || width < 1 || width > 100) {
-    alert("가로와 세로는 1~100 사이의 값이어야 합니다.");
+  if (height < 8 || height > 100 || width < 8 || width > 100) {
+    alert("가로와 세로는 8~100 사이의 값이어야 합니다.");
     return false;
   }
 

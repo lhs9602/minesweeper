@@ -30,8 +30,16 @@ const mineSweeperSlice = createSlice({
       } else if (action.payload.difficulty === "Custom") {
         state.boardSettings = action.payload.setting as SettingProps;
       }
+      state.board = [];
+      state.timer = 0;
+      state.start = false;
+      state.end = "";
+      state.usedFlag = 0;
     },
     increaseTimer: (state) => {
+      if (state.timer === 999) {
+        return;
+      }
       state.timer += 1;
     },
     resetGame: (state) => {
@@ -55,14 +63,27 @@ const mineSweeperSlice = createSlice({
           cell.isFlagged = true;
         }
       }
-    },
-    clickCell: (state, action) => {
-      const { x, y } = action.payload;
 
+      if (state.usedFlag - state.boardSettings.mines === 0) {
+        const flattenedBoard = state.board.flat();
+        const safeCell = flattenedBoard.filter(
+          (cell) => !cell.isMine && !cell.isOpen
+        );
+        if (safeCell.length === 0) {
+          state.end = "victory";
+        }
+      }
+    },
+    startGame: (state, action) => {
+      const { x, y } = action.payload;
       if (!state.start) {
         state.start = true;
         state.board = initializeBoard(state, x, y);
       }
+      openCells(state, x, y);
+    },
+    clickCell: (state, action) => {
+      const { x, y } = action.payload;
 
       const cell = state.board[y][x];
 
@@ -71,19 +92,12 @@ const mineSweeperSlice = createSlice({
       }
 
       if (cell.isMine) {
+        cell.isOpen = true;
         state.end = "defeat";
-        for (let i = 0; i < state.boardSettings.height; i++) {
-          for (let j = 0; j < state.boardSettings.width; j++) {
-            if (state.board[i][j].isMine && !state.board[i][j].isFlagged) {
-              state.board[i][j].isOpen = true;
-            }
-          }
-        }
         return;
       }
 
       openCells(state, x, y);
-
       const flattenedBoard = state.board.flat();
       const safeCell = flattenedBoard.filter(
         (cell) => !cell.isMine && !cell.isOpen
@@ -145,6 +159,7 @@ export const {
   resetGame,
   clickFlag,
   clickCell,
+  startGame,
   areaOpen,
 } = mineSweeperSlice.actions;
 

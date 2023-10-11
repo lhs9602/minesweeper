@@ -5,14 +5,15 @@ export const CountContainer = styled.div`
   ${BlockColor}
   position: relative;
   background-color: #000;
-  height: 2.6rem;
+  height: 2.3rem;
   box-sizing: border-box;
 `;
 export const CountBackground = styled.div`
   opacity: 0.3;
   color: red;
   font-weight: 700;
-  font-size: 1.8rem;
+  font-size: 2rem;
+
   letter-spacing: -0.1rem;
   box-sizing: border-box;
   padding: 0.1rem;

@@ -1,3 +1,5 @@
+import { ChangeEvent } from "react";
+
 export interface GameState {
   board: CellState[][];
   difficulty: string;
@@ -13,7 +15,6 @@ export interface CellState {
   neighboringMines: number;
   isOpen: boolean;
   isFlagged: boolean;
-  isQuestioned: boolean;
 }
 export type PersistedState = {
   difficulty: string;
@@ -31,4 +32,10 @@ export interface SettingProps {
   width: number;
   height: number;
   mines: number;
+}
+export interface CustomOptionDialogProps {
+  open: boolean;
+  onClose: () => void;
+  onSubmit: () => void;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }

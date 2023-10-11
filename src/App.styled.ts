@@ -8,9 +8,6 @@ export const GameContainer = styled.div`
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  padding: 30px;
 `;
 
-export const GameWrapper = styled.div`
-  min-height: 100vh;
-`;
+export const GameWrapper = styled.div``;

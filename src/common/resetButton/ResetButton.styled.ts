@@ -8,7 +8,7 @@ export const ResetBtn = styled.button`
   padding: 0;
   box-sizing: border-box;
   width: 2.6rem;
-  height: 2.6rem;
+  height: 2.3rem;
   display: flex;
   justify-content: center;
   align-items: center;

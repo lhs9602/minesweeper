@@ -47,6 +47,7 @@ export const Option = () => {
         })
       );
     }
+    setOpenCustomOption(false);
   };
 
   const handleCustomChange = (e: ChangeEvent<HTMLInputElement>) => {
