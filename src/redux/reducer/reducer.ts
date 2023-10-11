@@ -2,6 +2,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { DifficultyProps, GameState, SettingProps } from "../../data/type/type";
 import { initializeBoard } from "../../utill/initializeBoard";
 import { openCells } from "../../utill/openCells";
+import { countFlags } from "../../utill/countFlags";
 
 export const initialState: GameState = {
   board: [],
@@ -91,10 +92,60 @@ const mineSweeperSlice = createSlice({
         state.end = "victory";
       }
     },
+
+    areaOpen: (state, action) => {
+      const { x, y } = action.payload;
+      const cell = state.board[y][x];
+      const neighboringFlags = countFlags(state, x, y);
+      const neighbors = [
+        [-1, -1],
+        [-1, 0],
+        [-1, 1],
+        [0, -1],
+        [0, 1],
+        [1, -1],
+        [1, 0],
+        [1, 1],
+      ];
+
+      if (
+        cell.isOpen ||
+        cell.isFlagged ||
+        neighboringFlags !== cell.neighboringMines
+      ) {
+        return;
+      }
+
+      neighbors.forEach(([dx, dy]) => {
+        const newX = x + dx;
+        const newY = y + dy;
+
+        if (
+          newX >= 0 &&
+          newX < state.boardSettings.width &&
+          newY >= 0 &&
+          newY < state.boardSettings.height
+        ) {
+          const neighboringCell = state.board[newY][newX];
+          if (neighboringCell.isMine && !neighboringCell.isFlagged) {
+            state.end = "defeat";
+            return;
+          } else if (!neighboringCell.isFlagged && !neighboringCell.isOpen) {
+            openCells(state, newX, newY);
+          }
+        }
+      });
+    },
   },
 });
 
-export const { setDifficulty, increaseTimer, resetGame, clickFlag, clickCell } =
-  mineSweeperSlice.actions;
+export const {
+  setDifficulty,
+  increaseTimer,
+  resetGame,
+  clickFlag,
+  clickCell,
+  areaOpen,
+} = mineSweeperSlice.actions;
 
 export default mineSweeperSlice.reducer;

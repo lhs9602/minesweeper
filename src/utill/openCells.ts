@@ -10,19 +10,29 @@ export const openCells = (state: GameState, x: number, y: number) => {
   cell.isOpen = true;
 
   if (cell.neighboringMines === 0) {
-    for (let i = -1; i <= 1; i++) {
-      for (let j = -1; j <= 1; j++) {
-        const newX = x + j;
-        const newY = y + i;
-        if (
-          newX >= 0 &&
-          newX < state.boardSettings.width &&
-          newY >= 0 &&
-          newY < state.boardSettings.height
-        ) {
-          openCells(state, newX, newY);
-        }
+    const neighbors = [
+      [-1, -1],
+      [-1, 0],
+      [-1, 1],
+      [0, -1],
+      [0, 1],
+      [1, -1],
+      [1, 0],
+      [1, 1],
+    ];
+
+    neighbors.forEach(([dx, dy]) => {
+      const newX = x + dx;
+      const newY = y + dy;
+
+      if (
+        newX >= 0 &&
+        newX < state.boardSettings.width &&
+        newY >= 0 &&
+        newY < state.boardSettings.height
+      ) {
+        openCells(state, newX, newY);
       }
-    }
+    });
   }
 };
