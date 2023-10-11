@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { GameState } from "../../data/type/type";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { DifficultyProps, GameState, SettingProps } from "../../data/type/type";
 import { initializeBoard } from "../../utill/initializeBoard";
 import { openCells } from "../../utill/openCells";
 
@@ -17,17 +17,17 @@ const mineSweeperSlice = createSlice({
   name: "minesweeper",
   initialState,
   reducers: {
-    setDifficulty: (state, action) => {
+    setDifficulty: (state, action: PayloadAction<DifficultyProps>) => {
       state.difficulty = action.payload.difficulty;
 
-      if (action.payload === "Beginner") {
+      if (action.payload.difficulty === "Beginner") {
         state.boardSettings = { width: 8, height: 8, mines: 10 };
-      } else if (action.payload === "Intermediate") {
+      } else if (action.payload.difficulty === "Intermediate") {
         state.boardSettings = { width: 16, height: 16, mines: 40 };
-      } else if (action.payload === "Expert") {
+      } else if (action.payload.difficulty === "Expert") {
         state.boardSettings = { width: 32, height: 16, mines: 100 };
-      } else if (action.payload === "Custom") {
-        state.boardSettings = action.payload.setting;
+      } else if (action.payload.difficulty === "Custom") {
+        state.boardSettings = action.payload.setting as SettingProps;
       }
     },
     increaseTimer: (state) => {
@@ -47,10 +47,13 @@ const mineSweeperSlice = createSlice({
 
       if (cell.isFlagged) {
         state.usedFlag -= 1;
+        cell.isFlagged = false;
       } else {
-        state.usedFlag += 1;
+        if (state.usedFlag < state.boardSettings.mines) {
+          state.usedFlag += 1;
+          cell.isFlagged = true;
+        }
       }
-      cell.isFlagged = !cell.isFlagged;
     },
     clickCell: (state, action) => {
       const { x, y } = action.payload;

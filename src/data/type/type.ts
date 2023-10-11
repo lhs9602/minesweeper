@@ -1,6 +1,6 @@
 export interface GameState {
   board: CellState[][];
-  difficulty: "Beginner" | "Intermediate" | "Expert" | "Custom";
+  difficulty: string;
   boardSettings: { width: number; height: number; mines: number };
   timer: number;
   start: boolean;
@@ -16,10 +16,19 @@ export interface CellState {
   isQuestioned: boolean;
 }
 export type PersistedState = {
-  difficulty: "Beginner" | "Intermediate" | "Expert" | "Custom";
+  difficulty: string;
   boardSettings: {
     width: number;
     height: number;
     mines: number;
   };
 };
+export interface DifficultyProps {
+  difficulty: string;
+  setting?: SettingProps;
+}
+export interface SettingProps {
+  width: number;
+  height: number;
+  mines: number;
+}

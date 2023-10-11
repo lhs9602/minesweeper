@@ -2,7 +2,7 @@ import { persistStore, persistReducer, createTransform } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import mineSweeperReducer, { initialState } from "../reducer/reducer";
 import { GameState, PersistedState } from "../../data/type/type";
-import { createStore } from "@reduxjs/toolkit";
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 
 const saveSpecifics = createTransform<GameState, PersistedState>(
   (inboundState, key) => {
@@ -31,5 +31,10 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, mineSweeperReducer);
 
-export const store = createStore(persistedReducer);
+export const store = configureStore({
+  reducer: persistedReducer,
+  middleware: getDefaultMiddleware({
+    serializableCheck: false,
+  }),
+});
 export const persistor = persistStore(store);
