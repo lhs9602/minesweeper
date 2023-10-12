@@ -28,7 +28,7 @@ export const OpenCell = styled(Cell)`
   border-width: 0;
   border-top-width: 1px;
   border-left-width: 1px;
-
+  cursor: pointer;
   &:active {
     opacity: 1;
   }

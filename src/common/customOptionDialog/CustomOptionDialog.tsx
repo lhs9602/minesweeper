@@ -14,9 +14,10 @@ export const CustomOptionDialog = ({
   onSubmit,
   onChange,
 }: CustomOptionDialogProps) => {
+  // 설정 필드의 id와 라벨을 정의합니다.
   const fields = [
-    { id: "width", label: "Game Height:" },
-    { id: "height", label: "Game Width:" },
+    { id: "width", label: "Game Width:" },
+    { id: "height", label: "Game Height:" },
     { id: "mines", label: "Number of Bombs:" },
   ];
 
@@ -24,19 +25,21 @@ export const CustomOptionDialog = ({
     <Dialog open={open} onClose={onClose}>
       <DialogTitle>Custom Game Setup</DialogTitle>
       <DialogContent>
+        {/* 넓이,높이,지뢰의  TextField를 생성 */}
         {fields.map((field) => (
           <div key={field.id}>
             <TextField
               id={field.id}
               label={field.label}
               variant="standard"
-              type="number"
+              type="number" // 숫자만 입력 가능하도록 함
               onChange={onChange}
             />
           </div>
         ))}
       </DialogContent>
       <DialogActions>
+        {/* 게임 생성 및 취소 버튼 */}
         <Button color="secondary" onClick={onSubmit}>
           Create
         </Button>
