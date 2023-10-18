@@ -1,18 +1,22 @@
-폴더구조 소개
-assets:이미지 파일
-common:독립적으로 사용할 수 없으며, component의 파일들을 구성하는 원자단위의 부품. 예시) 드롭다운 메뉴
-component:독립적으로 사용가능하거나 여러 개의 common으로 이루어진 컴포넌트들. 예시) 드롭다운 메뉴창을 하위 컴포넌트로 두는 카드 컴포넌트
-data:프로젝트에 필요한 data들의 모음. 예시) 드롭다운 메뉴창에서 사용되는 문자열 배열
-redux:전역 상태 관리에서 사용되는 reducer,store들이 있는 폴더
-stlyle:전역에서 사용되는 스타일이나 컬러를 보관하는 폴더
-utill:이벤트핸들러를 제외한 함수들이 있는 폴더
+# 지뢰찾기 게임
 
-완료된 추가 구현 사항:
 
-- 양쪽 클릭 기능(area open)
-- 렌더링 최적화
-- 난이도 데이터 저장 (브라우저 새로고침 시 유지)
+배포링크: https://lhs9602.github.io/minesweeper/
 
-과제 설치 및 실행 방법
-npm install
-npm run dev
+
+![2023-10-18 21 41 27](https://github.com/lhs9602/minesweeper/assets/34961388/8c4601e1-8528-4be7-85f6-d8aac77d91af)
+
+
+
+
+
+## 기능 구현
+- 기본적인 지뢰찾기의 기능들
+- 난이도 선택. 커스텀 난이도 가능
+- 새로고침 시에도 데이터 유지
+- Area Open 기능
+
+## 기술스택
+
+
+<img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"> <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white"> <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"> <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"> <img src="https://img.shields.io/badge/redux-764ABC?style=for-the-badge&logo=redux&logoColor=black"> <img src="https://img.shields.io/badge/styledcomponents-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=black"> <img src="https://img.shields.io/badge/mui-007FFF?style=for-the-badge&logo=mui&logoColor=black"> <img src="https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=black"> <img src="https://img.shields.io/badge/vite-646CFF?style=for-the-badge&logo=vite&logoColor=black"> 
