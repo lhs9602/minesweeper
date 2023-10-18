@@ -1,7 +1,7 @@
 # 지뢰찾기 게임
 
 
-배포링크:https://lhs9602.github.io/minesweeper/
+배포링크: https://lhs9602.github.io/minesweeper/
 
 
 ![2023-10-18 21 41 27](https://github.com/lhs9602/minesweeper/assets/34961388/8c4601e1-8528-4be7-85f6-d8aac77d91af)
